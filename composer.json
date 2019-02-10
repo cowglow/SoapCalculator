@@ -1,0 +1,19 @@
+{
+    "name": "cg/soap-calculator",
+    "description": "Simple Soap Webservice based Calculator",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cowglow",
+            "email": "cowglow@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Cowglow\\": "src/"
+        },
+        "optimize-autoloader": true
+    },
+    "require": {}
+}
