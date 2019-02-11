@@ -40,7 +40,7 @@
                         event.preventDefault();
 
                         if (calcScreen.value !== '0') {
-                            if (calcScreen.value.match('^[0-9](\\+|\\-|\\*|\\/)[0-9]')) {
+                            if (calcScreen.value.match('^[0-9]*(\\+|\\-|\\*|\\/)[0-9]*')) {
                                 calcForm.submit();
                             }
                         }

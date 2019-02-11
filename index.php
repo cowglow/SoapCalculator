@@ -5,17 +5,31 @@ if (file_exists('vendor/autoload.php')) {
     require_once 'vendor/autoload.php';
 }
 
+// Initial Screen Display
 $total = '0';
 
+// Soap Calculation
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // get Calculation
-
+    // Form Data
     $formInput = $_POST['calculatorInput'];
-    $inputs    = preg_split('(\+|\-|\*|\/)', $formInput);
-    $operator  = preg_split('/\d/', $formInput)[1];
+
+    // IntA & IntB
+    $inputInt = preg_split('(\+|\-|\*|\/)', $formInput);
+
+    // Operator Method
+    $inputOperator = '';
+
+    $operators     = ['+', '-', '*', '/'];
+    $operatorIndex = 0;
+    foreach ($operators as $operator) {
+        if (strpos($formInput, $operator) > 0) {
+            $inputOperator = $operators[$operatorIndex];
+        }
+        ++$operatorIndex;
+    }
 
     $soapClient = new \Cowglow\SoapCalculator\Ports\Client('http://www.dneonline.com/calculator.asmx?wsdl');
-    $total = $soapClient->Calculate($inputs, $operator);
+    $total      = $soapClient->Calculate($inputInt, $inputOperator);
 }
 
 ?>
